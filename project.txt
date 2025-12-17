@@ -7,6 +7,7 @@ Percolation/
 ├── include/
 │   ├── grid.h
 │   ├── dfs.h
+└── Graphs/ # те же графики, что и в x64-Debug/
 └── out/
     └── build/
         └── x64-Debug/
