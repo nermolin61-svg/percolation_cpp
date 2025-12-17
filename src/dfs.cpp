@@ -1,36 +1,86 @@
-#include "C:\Users\nermo\OneDrive\–†–∞–±–æ—á–∏–π —Å—Ç–æ–ª\AMPh\1_semester\C++_in_photonics_tasks\Percolation\include\dfs.h"
-#include "C:\Users\nermo\OneDrive\–†–∞–±–æ—á–∏–π —Å—Ç–æ–ª\AMPh\1_semester\C++_in_photonics_tasks\Percolation\include\grid.h"
+#include "dfs.h"
+#include "grid.h"
+#include <queue>
+#include <utility>
+#include <cassert>
+#include <cmath>
 
-bool dfs(std::vector<std::vector<int>>& grid, int i, int j, std::vector<std::vector<bool>>& visited) {
-    int N = grid.size();
-    if (i < 0 || j < 0 || i >= N || j >= N) return false;
+// DFS
+bool dfs(std::vector<std::vector<int>>& grid, int i, int j,
+    std::vector<std::vector<bool>>& visited) {
+    int rows = (int)grid.size();
+    int cols = (int)grid[0].size();
+
+    if (i < 0 || j < 0 || i >= rows || j >= cols) return false;
     if (!grid[i][j] || visited[i][j]) return false;
-    if (i == N - 1) return true; // –¥–æ—Å—Ç–∏–≥–ª–∏ –Ω–∏–∂–Ω–µ–π –≥—Ä–∞–Ω–∏—Ü—ã
+    if (i == rows - 1) return true;
 
     visited[i][j] = true;
 
     return dfs(grid, i + 1, j, visited) ||
-           dfs(grid, i - 1, j, visited) ||
-           dfs(grid, i, j + 1, visited) ||
-           dfs(grid, i, j - 1, visited);
+        dfs(grid, i - 1, j, visited) ||
+        dfs(grid, i, j + 1, visited) ||
+        dfs(grid, i, j - 1, visited);
 }
 
-bool percolates(std::vector<std::vector<int>>& grid) {
-    int N = grid.size();
-    std::vector<std::vector<bool>> visited(N, std::vector<bool>(N, false));
+// BFS 
+bool percolatesBFS(std::vector<std::vector<int>>& grid) {
+    int rows = (int)grid.size();
+    int cols = (int)grid[0].size();
+    std::vector<std::vector<bool>> visited(rows, std::vector<bool>(cols, false));
+    std::queue<std::pair<int, int>> q;
 
-    for (int j = 0; j < N; ++j) {
-        if (grid[0][j] == 1 && dfs(grid, 0, j, visited))
-            return true;
+    for (int j = 0; j < cols; ++j) {
+        if (grid[0][j]) {
+            q.push(std::make_pair(0, j));
+            visited[0][j] = true;
+        }
     }
+
+    while (!q.empty()) {
+        int i = q.front().first;
+        int j = q.front().second;
+        q.pop();
+
+        if (i == rows - 1) return true;
+
+        
+        int directions[4][2] = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} };
+        for (int d = 0; d < 4; ++d) {
+            int dx = directions[d][0];
+            int dy = directions[d][1];
+            int ni = i + dx;
+            int nj = j + dy;
+
+            if (ni >= 0 && ni < rows && nj >= 0 && nj < cols &&
+                grid[ni][nj] && !visited[ni][nj]) {
+                visited[ni][nj] = true;
+                q.push(std::make_pair(ni, nj));
+            }
+        }
+    }
+
     return false;
 }
 
-double estimateProbability(int N, double p, int trials) {
+
+bool percolates(std::vector<std::vector<int>>& grid) {
+    // BFS
+    return percolatesBFS(grid);
+}
+
+// ŒˆÂÌÍ‡ ÔÓ·Óˇ ÔˇÏÓÛ„ÓÎ¸ÌÓÈ ÒÂÚÍË
+double estimateProbability(int rows, int cols, double p, int trials) {
+    assert(trials > 0);
+
     int success = 0;
     for (int t = 0; t < trials; ++t) {
-        auto grid = generateGrid(N, p);
+        auto grid = generateGrid(rows, cols, p);
         if (percolates(grid)) success++;
     }
     return static_cast<double>(success) / trials;
+}
+
+double estimateProbability(int N, double p, int trials) {
+    return estimateProbability(N, N, p, trials);
 }

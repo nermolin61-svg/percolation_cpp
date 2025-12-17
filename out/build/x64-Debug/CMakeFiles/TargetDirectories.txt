@@ -1,0 +1,3 @@
+C:/Users/nermo/OneDrive/Рабочий стол/AMPh/first_semester/C++_in_photonics_tasks/Percolation/out/build/x64-Debug/CMakeFiles/percolation.dir
+C:/Users/nermo/OneDrive/Рабочий стол/AMPh/first_semester/C++_in_photonics_tasks/Percolation/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/nermo/OneDrive/Рабочий стол/AMPh/first_semester/C++_in_photonics_tasks/Percolation/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

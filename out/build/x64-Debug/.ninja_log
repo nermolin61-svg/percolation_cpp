@@ -1,0 +1,11 @@
+# ninja log v6
+36	421	7876936827493434	CMakeFiles/percolation.dir/src/dfs.cpp.obj	4d97be3f779b0c43
+13	594	7876936827257732	CMakeFiles/percolation.dir/src/main.cpp.obj	cae24c9271cc4548
+669	1208	7876936833813003	percolation.exe	801fc51d109857a2
+33	1380	7876950876205685	CMakeFiles/percolation.dir/src/grid.cpp.obj	19ef564a3eb178af
+35	519	7876958723791821	CMakeFiles/percolation.dir/src/dfs.cpp.obj	d07f01e59b5daac8
+24	702	7876958723683694	CMakeFiles/percolation.dir/src/grid.cpp.obj	c95ab534a0f04d86
+13	719	7876958723570651	CMakeFiles/percolation.dir/src/main.cpp.obj	89139636947326f3
+720	1374	7876958730636184	percolation.exe	801fc51d109857a2
+7	618	7876962977973938	CMakeFiles/percolation.dir/src/main.cpp.obj	89139636947326f3
+619	850	7876962984102113	percolation.exe	801fc51d109857a2
