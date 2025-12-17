@@ -7,4 +7,10 @@ Percolation/
 ├── include/
 │   ├── grid.h
 │   ├── dfs.h
-└── build/
+└── out/
+    └── build/
+        └── x64-Debug/
+            ├── square_grid_plot      # Визуализация квадратных сеток
+            ├── tall_grid_plot        # Визуализация высоких прямоугольных сеток
+            ├── wide_grid_plot        # Визуализация широких прямоугольных сеток
+            ├── aspect_ratio_scatter  # Анализ соотношений сторон
